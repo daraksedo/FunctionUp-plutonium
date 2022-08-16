@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const {InsertBooks, getBooksData} = require("../controllers/bookController");
+const {createBooks, getBooksList, getBooksInYear, getParticularBooks, getXINRBooks, getRandomBooks} = require("../controllers/bookController");
 
-router.post("/InsertBooks", InsertBooks);
+router.post("/createBooks", createBooks);
 
-router.get("/getBooksData", getBooksData);
+router.get("/getBooksList", getBooksList);
+router.get("/getBooksInYear", getBooksInYear);
+router.get("/getParticularBooks/:index", getParticularBooks);
+router.get("/getXINRBooks", getXINRBooks);
+router.get("/getRandomBooks", getRandomBooks);
 
 module.exports = router;
