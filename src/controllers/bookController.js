@@ -7,7 +7,7 @@ const createBooks = async function (req, res) {
 }
 
 const getBooksList = async function (req, res) {
-    let allBooks = await BookModel.find({}, {bookName : true, authorName : true});
+    let allBooks = await BookModel.find({}, {bookName : true, authorName : true, _id : 0})
     res.send({msg: allBooks});
 }
 
@@ -18,18 +18,18 @@ const getBooksInYear = async function (req, res) {
 }
 
 const getParticularBooks = async function (req, res) {
-    const data = req.params.index;
-    let allBooks = await BookModel.find( { status: "1930"} )
+    const data = req.body;
+    let allBooks = await BookModel.find(data);
     res.send({msg: allBooks});
 }
 
 const getXINRBooks = async function (req, res) {
-    let allBooks = await BookModel.find({}, {price : {rupees : { $eq : "500"}}});
+    let allBooks = await BookModel.find( { "price.rupees" : {$in : ["100" , "200" , "500"]}} )
     res.send({msg: allBooks});
 }
 
 const getRandomBooks = async function (req, res) {
-    let allBooks = await BookModel.aggregate([{$sample:{size:1}}]);
+    let allBooks = await BookModel.find({$or: [{stocksAvailable : true}, {totalPages : {$gt : 500}}]});
     res.send({msg: allBooks});
 }
 

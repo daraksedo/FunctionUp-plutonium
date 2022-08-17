@@ -6,7 +6,7 @@ router.post("/createBooks", createBooks);
 
 router.get("/getBooksList", getBooksList);
 router.get("/getBooksInYear", getBooksInYear);
-router.get("/getParticularBooks/:index", getParticularBooks);
+router.get("/getParticularBooks", getParticularBooks);
 router.get("/getXINRBooks", getXINRBooks);
 router.get("/getRandomBooks", getRandomBooks);
 
